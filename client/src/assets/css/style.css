@@ -795,7 +795,7 @@ img.mfp-img {
   top: 50%;
   height: 0;
   width: 150%;
-  background-color: #3a3a3a;
+  background-color: #e8f0fe;
   transition: all 0.3s ease 0s;
   content: "";
   transform: translateX(-50%) translateY(-50%) rotate(-30deg);
@@ -4705,12 +4705,13 @@ td.plantmore-product-thumbnail img{
   transition: all 0.3s ease 0s; }
 
 .login-input-box input {
-  border: 1px solid #999999;
-  color: #666666;
-  margin-bottom: 20px;
-  padding: 8px 12px;
-  width: 100%;
-  font-size: 14px; }
+    border: 1px solid #999999;
+    color: #666666;
+    padding: 8px 12px;
+    width: 100%;
+    font-size: 17px;
+    height: 42px;
+}
 
 .login-toggle-btn a {
   float: right;

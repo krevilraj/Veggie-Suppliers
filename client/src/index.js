@@ -15,7 +15,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/slick.css'
 import './assets/css/swiper.min.css'
 import './assets/css/animation.css'
-import './assets/css/nice-select.css'
 import './assets/css/fancy-box.css'
 import './assets/css/style.css'
 

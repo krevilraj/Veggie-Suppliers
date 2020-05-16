@@ -1,24 +1,20 @@
 import React from "react";
 import moment from "moment";
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import * as Yup from 'yup';
-import { registerUser } from "../../../_actions/user_actions";
-import { useDispatch } from "react-redux";
+import {registerUser} from "../../../_actions/user_actions";
+import {useDispatch} from "react-redux";
 
-import {
-  Form,
-  Input,
-  Button,
-} from 'antd';
+import {Button, Form, Input,} from 'antd';
 
 const formItemLayout = {
   labelCol: {
-    xs: { span: 24 },
-    sm: { span: 8 },
+    xs: {span: 24},
+    sm: {span: 8},
   },
   wrapperCol: {
-    xs: { span: 24 },
-    sm: { span: 16 },
+    xs: {span: 24},
+    sm: {span: 16},
   },
 };
 const tailFormItemLayout = {
@@ -61,7 +57,7 @@ function RegisterPage(props) {
           .oneOf([Yup.ref('password'), null], 'Passwords must match')
           .required('Confirm Password is required')
       })}
-      onSubmit={(values, { setSubmitting }) => {
+      onSubmit={(values, {setSubmitting}) => {
         setTimeout(() => {
 
           let dataToSubmit = {
@@ -97,101 +93,125 @@ function RegisterPage(props) {
           handleReset,
         } = props;
         return (
-          <div className="app">
-            <h2>Sign up</h2>
-            <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
+          <div>
+            <div className="breadcrumb-area">
+              <div className="container">
+                <div className="row">
+                  <div className="col-12">
+                    <ul className="breadcrumb-list">
+                      <li className="breadcrumb-item"><a href="/">Home</a></li>
+                      <li className="breadcrumb-item active">login</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="container">
+              <div className="col-lg-7 col-md-12 ml-auto mr-auto">
+                <h2 className="text-center" style={{padding: "40px 0"}}>Sign up</h2>
+                <div className="login-form-container login-input-box">
+                  <Form style={{minWidth: '375px'}} {...formItemLayout} onSubmit={handleSubmit}>
 
-              <Form.Item required label="Name">
-                <Input
-                  id="name"
-                  placeholder="Enter your name"
-                  type="text"
-                  value={values.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.name && touched.name ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.name && touched.name && (
-                  <div className="input-feedback">{errors.name}</div>
-                )}
-              </Form.Item>
+                    <Form.Item required label="Name">
+                      <Input
+                        id="name"
+                        placeholder="Enter your name"
+                        type="text"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={
+                          errors.name && touched.name ? 'text-input error' : 'text-input'
+                        }
+                      />
+                      {errors.name && touched.name && (
+                        <div className="input-feedback">{errors.name}</div>
+                      )}
+                    </Form.Item>
 
-              <Form.Item required label="Last Name">
-                <Input
-                  id="lastName"
-                  placeholder="Enter your Last Name"
-                  type="text"
-                  value={values.lastName}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.lastName && touched.lastName ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.lastName && touched.lastName && (
-                  <div className="input-feedback">{errors.lastName}</div>
-                )}
-              </Form.Item>
+                    <Form.Item required label="Last Name">
+                      <Input
+                        id="lastName"
+                        placeholder="Enter your Last Name"
+                        type="text"
+                        value={values.lastName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={
+                          errors.lastName && touched.lastName ? 'text-input error' : 'text-input'
+                        }
+                      />
+                      {errors.lastName && touched.lastName && (
+                        <div className="input-feedback">{errors.lastName}</div>
+                      )}
+                    </Form.Item>
 
-              <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? "error" : 'success'}>
-                <Input
-                  id="email"
-                  placeholder="Enter your Email"
-                  type="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.email && touched.email ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.email && touched.email && (
-                  <div className="input-feedback">{errors.email}</div>
-                )}
-              </Form.Item>
+                    <Form.Item required label="Email" hasFeedback
+                               validateStatus={errors.email && touched.email ? "error" : 'success'}>
+                      <Input
+                        id="email"
+                        placeholder="Enter your Email"
+                        type="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={
+                          errors.email && touched.email ? 'text-input error' : 'text-input'
+                        }
+                      />
+                      {errors.email && touched.email && (
+                        <div className="input-feedback">{errors.email}</div>
+                      )}
+                    </Form.Item>
 
-              <Form.Item required label="Password" hasFeedback validateStatus={errors.password && touched.password ? "error" : 'success'}>
-                <Input
-                  id="password"
-                  placeholder="Enter your password"
-                  type="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.password && touched.password ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.password && touched.password && (
-                  <div className="input-feedback">{errors.password}</div>
-                )}
-              </Form.Item>
+                    <Form.Item required label="Password" hasFeedback
+                               validateStatus={errors.password && touched.password ? "error" : 'success'}>
+                      <Input
+                        id="password"
+                        placeholder="Enter your password"
+                        type="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={
+                          errors.password && touched.password ? 'text-input error' : 'text-input'
+                        }
+                      />
+                      {errors.password && touched.password && (
+                        <div className="input-feedback">{errors.password}</div>
+                      )}
+                    </Form.Item>
 
-              <Form.Item required label="Confirm" hasFeedback>
-                <Input
-                  id="confirmPassword"
-                  placeholder="Enter your confirmPassword"
-                  type="password"
-                  value={values.confirmPassword}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.confirmPassword && touched.confirmPassword ? 'text-input error' : 'text-input'
-                  }
-                />
-                {errors.confirmPassword && touched.confirmPassword && (
-                  <div className="input-feedback">{errors.confirmPassword}</div>
-                )}
-              </Form.Item>
+                    <Form.Item required label="Confirm" hasFeedback>
+                      <Input
+                        id="confirmPassword"
+                        placeholder="Enter your confirmPassword"
+                        type="password"
+                        value={values.confirmPassword}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        className={
+                          errors.confirmPassword && touched.confirmPassword ? 'text-input error' : 'text-input'
+                        }
+                      />
+                      {errors.confirmPassword && touched.confirmPassword && (
+                        <div className="input-feedback">{errors.confirmPassword}</div>
+                      )}
+                    </Form.Item>
 
-              <Form.Item {...tailFormItemLayout}>
-                <Button onClick={handleSubmit} type="primary" disabled={isSubmitting}>
-                  Submit
-                </Button>
-              </Form.Item>
-            </Form>
+                    <Form.Item {...tailFormItemLayout}>
+                      <div className="button-box">
+                        <button className="register-btn btn" type="submit"
+                                disabled={isSubmitting} onSubmit={handleSubmit}><span>Register</span>
+                        </button>
+                      </div>
+
+                    </Form.Item>
+                  </Form>
+                </div>
+              </div>
+            </div>
+
           </div>
         );
       }}
