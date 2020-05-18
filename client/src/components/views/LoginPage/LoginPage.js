@@ -98,11 +98,7 @@ function LoginPage(props) {
                 <div className="row">
                   <div className="col-lg-7 col-md-12 ml-auto mr-auto">
                     <div className="login-register-wrapper">
-                      <div className="login-register-tab-list nav">
-                        <a className="active" data-toggle="tab" href="#lg1">
-                          <h2> Log In </h2>
-                        </a>
-                      </div>
+                          <h2 className="text-center" style={{padding: "40px 0"}}>Log In</h2>
                       <div className="tab-content">
                         <div id="lg1" className="tab-pane active">
                           <div className="login-form-container">
