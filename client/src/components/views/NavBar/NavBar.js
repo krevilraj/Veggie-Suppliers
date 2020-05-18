@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './Sections/Navbar.css';
 import RightMenu from './Sections/RightMenu';
+import "./navbar.css";
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
@@ -238,7 +239,7 @@ function NavBar() {
 
                   <div className="mobile-menu-btn d-block d-lg-none">
                     <div className="off-canvas-btn">
-                      <a href="#"><img src="images/bg-menu.png" alt=""/></a>
+                      <a href="#" onClick={showDrawer}><img src="images/bg-menu.png" alt=""/></a>
                     </div>
                   </div>
 
@@ -248,10 +249,10 @@ function NavBar() {
           </div>
         </div>
 
-        <aside className="off-canvas-wrapper">
-          <div className="off-canvas-overlay"></div>
+        <aside className={visible?'off-canvas-wrapper open':'off-canvas-wrapper'}>
+          <div className="off-canvas-overlay" onClick={onClose}></div>
           <div className="off-canvas-inner-content">
-            <div className="btn-close-off-canvas">
+            <div className="btn-close-off-canvas" onClick={onClose}>
               <i className="fas fa-times"></i>
             </div>
 

@@ -775,7 +775,7 @@ img.mfp-img {
 /*--
     - Button
 ------------------------------------------*/
-.btn, .btn-2 {
+.btn-1, .btn-2 {
   border: 1px solid #626262;
   line-height: 24px;
   padding: 10px 40px;
@@ -787,9 +787,9 @@ img.mfp-img {
   position: relative;
   z-index: 1;
   transition: all 0.3s ease 0s; }
-.btn:focus, .btn-2:focus {
+.btn-1:focus, .btn-2:focus {
   outline: none; }
-.btn::before, .btn-2::before {
+.btn-1::before, .btn-2::before {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -801,61 +801,61 @@ img.mfp-img {
   transform: translateX(-50%) translateY(-50%) rotate(-30deg);
   opacity: 0;
   z-index: -1; }
-.btn:hover, .btn-2:hover {
+.btn-1:hover, .btn-2:hover {
   color: #80BB01; }
-.btn:hover::before, .btn-2:hover::before {
+.btn-1:hover::before, .btn-2:hover::before {
   height: 300%;
   opacity: 1; }
-.btn.hover-theme::before, .btn-2.hover-theme::before {
+.btn-1.hover-theme::before, .btn-2.hover-theme::before {
   background-color: #80BB01; }
 .btn.hover-theme:hover, .btn-2.hover-theme:hover {
   border-color: #80BB01;
   color: #3a3a3a; }
-.btn.hover-theme:hover::before, .btn-2.hover-theme:hover::before {
+.btn-1.hover-theme:hover::before, .btn-2.hover-theme:hover::before {
   height: 300%;
   opacity: 1; }
-.btn.btn-circle, .btn-2.btn-circle {
+.btn-1.btn-circle, .btn-2.btn-circle {
   border-radius: 50px; }
-.btn.btn-radius, .btn-2.btn-radius {
+.btn-1.btn-radius, .btn-2.btn-radius {
   border-radius: 5px; }
-.btn.btn-square, .btn-2.btn-square {
+.btn-1.btn-square, .btn-2.btn-square {
   border-radius: 0; }
-.btn.btn-text, .btn-2.btn-text {
+.btn-1.btn-text, .btn-2.btn-text {
   border-radius: 0;
   padding: 0;
   line-height: 20px;
   border: none; }
-.btn.btn-text::before, .btn-2.btn-text::before {
+.btn-1.btn-text::before, .btn-2.btn-text::before {
   display: none; }
-.btn.btn-text.hover-theme:hover, .btn-2.btn-text.hover-theme:hover {
+.btn-1.btn-text.hover-theme:hover, .btn-2.btn-text.hover-theme:hover {
   color: #80BB01; }
-.btn.btn-underline, .btn-2.btn-underline {
+.btn-1.btn-underline, .btn-2.btn-underline {
   text-decoration: underline; }
-.btn.btn-large, .btn-2.btn-large {
+.btn-1.btn-large, .btn-2.btn-large {
   padding: 15px 40px;
   font-size: 16px; }
 @media only screen and (max-width: 767px) {
-  .btn.btn-large, .btn-2.btn-large {
+  .btn-1.btn-large, .btn-2.btn-large {
     font-size: 12px;
     padding: 7px 25px; } }
 @media only screen and (max-width: 479px) {
-  .btn.btn-large, .btn-2.btn-large {
+  .btn-1.btn-large, .btn-2.btn-large {
     font-size: 11px;
     padding: 4px 15px;
     margin-top: 15px; } }
-.btn.btn-medium, .btn-2.btn-medium {
+.btn-1.btn-medium, .btn-2.btn-medium {
   padding: 7px 20px;
   font-size: 12px; }
 @media only screen and (max-width: 767px) {
-  .btn.btn-medium, .btn-2.btn-medium {
+  .btn-1.btn-medium, .btn-2.btn-medium {
     font-size: 12px;
     padding: 7px 25px; } }
 @media only screen and (max-width: 479px) {
-  .btn.btn-medium, .btn-2.btn-medium {
+  .btn-1.btn-medium, .btn-2.btn-medium {
     font-size: 11px;
     padding: 4px 15px;
     margin-top: 15px; } }
-.btn.btn-small, .btn-2.btn-small {
+.btn-1.btn-small, .btn-2.btn-small {
   padding: 4px 15px;
   font-size: 11px; }
 @media only screen and (max-width: 767px) {
@@ -1140,128 +1140,7 @@ img.mfp-img {
   .logo {
     margin: 10px 0; } }
 
-/* Main Menu Css */
-.main-menu-area ul > li {
-  display: inline-block;
-  position: relative;
-  padding: 15px 0px;
-  margin-right: 55px; }
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-  .main-menu-area ul > li {
-    margin-right: 40px; } }
-.main-menu-area ul > li > a {
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 0;
-  text-transform: uppercase;
-  position: relative;
-  -webkit-transition: 0.4s;
-  transition: 0.4s; }
-.main-menu-area ul > li > a i {
-  margin-left: 3px; }
-.main-menu-area ul > li > a:hover {
-  color: #80BB01 !important; }
-.main-menu-area ul > li > a::before {
-  content: "";
-  background: #80BB01;
-  width: 0%;
-  height: 2px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  opacity: 0;
-  -ms-filter: 0;
-  -webkit-transition: 0.4s;
-  transition: 0.4s; }
-.main-menu-area ul > li:first-child {
-  padding-left: 0; }
-.main-menu-area ul > li:hover > a::before {
-  visibility: visible;
-  opacity: 1;
-  -ms-filter: 1;
-  width: 100%; }
-.main-menu-area ul > li:hover .sub-menu, .main-menu-area ul > li:hover .mega-menu {
-  visibility: visible;
-  opacity: 1;
-  -ms-filter: 1;
-  top: 100%; }
-.main-menu-area.white_text ul > li > a {
-  color: #ffffff; }
 
-/*--
-    - Main Menu Css
----------------------*/
-.main-menu-area .sub-menu {
-  background: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  left: 0;
-  padding: 15px;
-  position: absolute;
-  text-align: left;
-  width: 200px;
-  z-index: 99;
-  top: 120%;
-  visibility: hidden;
-  opacity: 0;
-  -ms-filter: 0;
-  -webkit-transition: 0.3s;
-  transition: 0.3s; }
-.main-menu-area .sub-menu > li {
-  padding: 0;
-  margin-right: 0px;
-  display: block; }
-.main-menu-area .sub-menu > li:first-child {
-  margin-bottom: 0; }
-.main-menu-area .sub-menu > li > a {
-  padding: 0;
-  font-weight: 400;
-  margin-bottom: 8px;
-  color: #333 !important;
-  text-transform: capitalize; }
-.main-menu-area .sub-menu > li > a::before {
-  display: none; }
-
-.main-menu-area .mega-menu {
-  background: #ffffff;
-  left: 0;
-  padding: 30px 20px;
-  position: absolute;
-  text-align: left;
-  width: 640px;
-  z-index: 99;
-  top: 120%;
-  visibility: hidden;
-  opacity: 0;
-  -ms-filter: 0;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
-.main-menu-area .mega-menu > li {
-  width: 33.333%;
-  float: left;
-  padding: 0;
-  margin-right: 0px; }
-.main-menu-area .mega-menu > li > a {
-  padding: 0;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  color: #333 !important; }
-.main-menu-area .mega-menu > li > a::before {
-  display: none; }
-.main-menu-area .mega-menu > li ul > li {
-  display: block;
-  padding: 0;
-  margin-right: 0; }
-.main-menu-area .mega-menu > li ul > li a {
-  padding: 0;
-  color: #333 !important;
-  text-transform: capitalize;
-  display: block;
-  font-weight: 400;
-  margin-top: 8px; }
-.main-menu-area .mega-menu > li ul > li a::before {
-  display: none; }
 
 /*--
     - Right Blok Box Css
