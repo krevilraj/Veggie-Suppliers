@@ -1,33 +1,31 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Dropdown} from 'react-bootstrap';
 import axios from 'axios';
 import {USER_SERVER} from '../../../Config';
 import {withRouter} from 'react-router-dom';
+import {useSelector} from "react-redux";
 
-class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
+function Navbar(props) {
 
-  toggleOffcanvas() {
+  const toggleOffcanvas = () => {
     document.querySelector('.sidebar-offcanvas').classList.toggle('active');
-  }
+  };
 
-  /*const user = useSelector(state => state.user);*/
-
-  handleClick(e) {
+  const logoutHandler = () => {
     alert('functioncall');
     axios.get(`${USER_SERVER}/logout`).then(response => {
       if (response.status === 200) {
-        this.props.history.push("/login");
+        props.history.push("/login");
       } else {
         alert('Log Out Failed')
       }
     });
   };
 
-  render() {
+  const user = useSelector(state => state.user);
+
+  if (user.userData && user.userData.isAuth) {
+
     return (
       <nav className="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
         <div className="navbar-menu-wrapper d-flex align-items-center justify-content-between">
@@ -39,18 +37,10 @@ class Navbar extends Component {
             <i className="mdi mdi-menu"></i>
           </button>
           <ul className="navbar-nav navbar-nav-left header-links">
-            <li className="nav-item d-none d-md-flex">
-              <a href="!#" onClick={evt => evt.preventDefault()} className="nav-link">Schedule <span
-                className="badge badge-primary ml-1">New</span>
-              </a>
-            </li>
+
             <li className="nav-item active d-none d-xl-flex">
               <a href="!#" onClick={evt => evt.preventDefault()} className="nav-link">
                 <i className="mdi mdi-elevation-rise"></i>Reports</a>
-            </li>
-            <li className="nav-item d-none d-lg-flex">
-              <a href="!#" onClick={evt => evt.preventDefault()} className="nav-link">
-                <i className="mdi mdi-bookmark-plus-outline"></i>Score</a>
             </li>
           </ul>
           <ul className="navbar-nav navbar-nav-right ml-lg-auto">
@@ -153,8 +143,8 @@ class Navbar extends Component {
             <li className="nav-item  nav-profile border-0">
               <Dropdown alignRight>
                 <Dropdown.Toggle className="nav-link count-indicator bg-transparent">
-                  <span className="profile-text">Richard V.Welsh !</span>
-                  <img className="img-xs rounded-circle" src={require("../../../../assets/images/faces/face8.jpg")}
+                  <span className="profile-text">{user.userData.name ? user.userData.name : ''}</span>
+                  <img className="img-xs rounded-circle" src={user.userData.image}
                        alt="Profile"/>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="preview-list navbar-dropdown pb-3">
@@ -186,7 +176,7 @@ class Navbar extends Component {
                     Check Inbox
                   </Dropdown.Item>
                   <Dropdown.Item className="dropdown-item preview-item d-flex align-items-center border-0"
-                                 onClick={this.handleClick}>
+                                 onClick={logoutHandler}>
                     Sign Out
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -194,7 +184,59 @@ class Navbar extends Component {
             </li>
           </ul>
           <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                  onClick={this.toggleOffcanvas}>
+                  onClick={toggleOffcanvas}>
+            <span className="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+    );
+  }else{
+    return (
+      <nav className="navbar col-lg-12 col-12 p-lg-0 fixed-top d-flex flex-row">
+        <div className="navbar-menu-wrapper d-flex align-items-center justify-content-between">
+          <a className="navbar-brand brand-logo-mini align-self-center d-lg-none" href="!#"
+             onClick={evt => evt.preventDefault()}><img src={require("../../../../assets/images/logo-mini.svg")}
+                                                        alt="logo"/></a>
+          <button className="navbar-toggler navbar-toggler align-self-center" type="button"
+                  onClick={() => document.body.classList.toggle('sidebar-icon-only')}>
+            <i className="mdi mdi-menu"></i>
+          </button>
+          <ul className="navbar-nav navbar-nav-left header-links">
+            <li className="nav-item active d-none d-xl-flex">
+              <a href="!#" onClick={evt => evt.preventDefault()} className="nav-link">
+                <i className="mdi mdi-elevation-rise"></i>Reports</a>
+            </li>
+          </ul>
+          <ul className="navbar-nav navbar-nav-right ml-lg-auto">
+            <li className="nav-item  nav-profile border-0">
+              <Dropdown alignRight>
+                <Dropdown.Toggle className="nav-link count-indicator p-0 toggle-arrow-hide bg-transparent">
+                  <i className="mdi mdi-file-outline"></i>
+                  <span className="count">7</span>
+                </Dropdown.Toggle>
+              </Dropdown>
+            </li>
+            <li className="nav-item  nav-profile border-0 pl-4">
+              <Dropdown alignRight>
+                <Dropdown.Toggle className="nav-link count-indicator p-0 toggle-arrow-hide bg-transparent">
+                  <i className="mdi mdi-bell-outline"></i>
+                  <span className="count bg-success">!</span>
+                </Dropdown.Toggle>
+
+              </Dropdown>
+            </li>
+            <li className="nav-item  nav-profile border-0">
+              <Dropdown alignRight>
+                <Dropdown.Toggle className="nav-link count-indicator bg-transparent">
+                  <span className="profile-text">...</span>
+                  <img className="img-xs rounded-circle" src={require("../../../../assets/images/faces/face8.jpg")}
+                       alt="Profile"/>
+                </Dropdown.Toggle>
+              </Dropdown>
+            </li>
+          </ul>
+          <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                  onClick={toggleOffcanvas}>
             <span className="mdi mdi-menu"></span>
           </button>
         </div>

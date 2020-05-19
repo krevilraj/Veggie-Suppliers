@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="90cf66f9-63a5-4269-a0a8-214ed5c2eda0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/components/views/Backend/Layout/BackendLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/views/Backend/Layout/BackendLayout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/views/Backend/Layout/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/views/Backend/Layout/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/views/NavBar/Sections/RightMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/views/NavBar/Sections/RightMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/views/NavBar/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/views/NavBar/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/hoc/role_auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/hoc/role_auth.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +35,7 @@
           <entry key="css" value="13" />
           <entry key="html" value="6" />
           <entry key="jpg" value="1" />
-          <entry key="js" value="45" />
+          <entry key="js" value="48" />
           <entry key="json" value="2" />
           <entry key="png" value="2" />
           <entry key="rnc" value="1" />
@@ -50,7 +48,7 @@
           <entry key="HTML" value="6" />
           <entry key="Image" value="3" />
           <entry key="JSON" value="2" />
-          <entry key="JavaScript" value="45" />
+          <entry key="JavaScript" value="48" />
           <entry key="RNG Compact" value="1" />
           <entry key="SCSS" value="12" />
         </counts>
@@ -59,7 +57,7 @@
         <counts>
           <entry key="css" value="151" />
           <entry key="html" value="19" />
-          <entry key="js" value="1656" />
+          <entry key="js" value="1791" />
           <entry key="json" value="6" />
           <entry key="scss" value="16" />
         </counts>
@@ -69,7 +67,7 @@
           <entry key="CSS" value="151" />
           <entry key="HTML" value="19" />
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="1656" />
+          <entry key="JavaScript" value="1791" />
           <entry key="SCSS" value="16" />
         </counts>
       </usages-collector>
@@ -77,25 +75,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/views/NavBar/Sections/RightMenu.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/components/views/Backend/Layout/Navbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+            <state relative-caret-position="77">
+              <caret line="146" column="82" selection-start-line="146" selection-start-column="82" selection-end-line="146" selection-end-column="82" />
               <folding>
-                <element signature="e#46#72#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/client/src/components/views/Backend/Layout/Navbar.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/hoc/role_auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="188" column="59" selection-start-line="188" selection-start-column="59" selection-end-line="188" selection-end-column="59" />
+            <state relative-caret-position="170">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/components/views/NavBar/Sections/RightMenu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+              <folding>
+                <element signature="e#46#72#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,11 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>travel</find>
-      <find>80BB01</find>
-      <find>.login-input-box input</find>
-      <find>.input-fee</find>
-      <find>../assets</find>
       <find>gray-600</find>
       <find>line-height-base</find>
       <find>theme</find>
@@ -143,11 +148,17 @@
       <find>logo-mini</find>
       <find>white</find>
       <find>logoutHandler</find>
+      <find>handleClick</find>
+      <find>this</find>
+      <find>score</find>
+      <find>console</find>
+      <find>sche</find>
     </findStrings>
     <replaceStrings>
       <replace>../../../assets</replace>
       <replace>../../../</replace>
       <replace>../../../../</replace>
+      <replace>logouthandler</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -182,13 +193,13 @@
         <option value="$PROJECT_DIR$/client/src/components/AppRoute.js" />
         <option value="$PROJECT_DIR$/client/src/components/views/ErrorPage/401Page.js" />
         <option value="$PROJECT_DIR$/client/src/components/App.js" />
-        <option value="$PROJECT_DIR$/client/src/hoc/role_auth.js" />
         <option value="$PROJECT_DIR$/client/src/components/views/ErrorPage/_401Page.css" />
         <option value="$PROJECT_DIR$/client/src/components/views/ErrorPage/_401Page.js" />
         <option value="$PROJECT_DIR$/client/src/components/views/NavBar/navbar.css" />
         <option value="$PROJECT_DIR$/client/src/index.js" />
         <option value="$PROJECT_DIR$/client/src/components/views/Backend/Layout/BackendLayout.js" />
         <option value="$PROJECT_DIR$/client/src/components/views/NavBar/Sections/RightMenu.js" />
+        <option value="$PROJECT_DIR$/client/src/hoc/role_auth.js" />
         <option value="$PROJECT_DIR$/client/src/components/views/Backend/Layout/Navbar.js" />
       </list>
     </option>
@@ -394,12 +405,12 @@
       <workItem from="1589738324920" duration="49000" />
       <workItem from="1589792085311" duration="976000" />
       <workItem from="1589805356805" duration="6362000" />
-      <workItem from="1589881194460" duration="9601000" />
+      <workItem from="1589881194460" duration="12880000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50534000" />
+    <option name="totallyTimeSpent" value="53813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -420,7 +431,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -633,16 +644,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/hoc/role_auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/views/ErrorPage/_401Page.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -727,20 +728,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/views/NavBar/Sections/RightMenu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+        <state relative-caret-position="119">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
           <folding>
             <element signature="e#46#72#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/views/Backend/Layout/Navbar.js">
+    <entry file="file://$PROJECT_DIR$/client/src/hoc/role_auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="188" column="59" selection-start-line="188" selection-start-column="59" selection-end-line="188" selection-end-column="59" />
+        <state relative-caret-position="170">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/views/Backend/Layout/Navbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="146" column="82" selection-start-line="146" selection-start-column="82" selection-end-line="146" selection-end-column="82" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>

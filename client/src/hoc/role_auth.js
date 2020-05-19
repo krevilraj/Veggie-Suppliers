@@ -9,8 +9,6 @@ export default function (ComposedClass, reload, adminRoute = null, role = []) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      console.log("...test");
-      console.log(role);
       var adminindex = role.indexOf('admin');
 
       if (~adminindex) {
@@ -22,7 +20,6 @@ export default function (ComposedClass, reload, adminRoute = null, role = []) {
         role[managerindex] = 2;
       }
 
-      console.log(role);
       dispatch(auth()).then(async response => {
         if (await !response.payload.isAuth) {
             props.history.push('/login')
