@@ -19,7 +19,6 @@ function RightMenu(props) {
   };
 
   if (user.userData && user.userData.isAuth) {
-    console.log(user);
     return (
       <ul id="menu-header-top-links" className="header-menu">
         <li id="menu-item-3249"
