@@ -201,7 +201,7 @@ function RegisterPage(props) {
 
                     <Form.Item {...tailFormItemLayout}>
                       <div className="button-box">
-                        <button className="register-btn btn" type="submit"
+                        <button className="register-btn btn-2" type="submit"
                                 disabled={isSubmitting} onSubmit={handleSubmit}><span>Register</span>
                         </button>
                       </div>

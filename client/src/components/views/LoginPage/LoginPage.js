@@ -157,7 +157,7 @@ function LoginPage(props) {
                                       forgot password
                                     </a>
                                     <div className="button-box">
-                                      <button className="register-btn btn" type="submit"
+                                      <button className="register-btn btn-1" type="submit"
                                               disabled={isSubmitting} onSubmit={handleSubmit}><span>Log in</span>
                                       </button>
                                     </div>
