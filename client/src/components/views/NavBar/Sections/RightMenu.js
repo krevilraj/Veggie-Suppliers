@@ -25,7 +25,7 @@ function RightMenu(props) {
             className="white">
           <a href={void(0)} aria-current="page">Welcome {user.userData.name} ! </a></li>
         {(user.userData.role === 3 || user.userData.role === 1 || user.userData.role === 2) ?
-          <li><a href="/dashboard" className="login show-login-link">Dashboard </a></li>
+          <li><a href="/dashboard/index" className="login show-login-link">Dashboard </a></li>
           :
           ""
         }

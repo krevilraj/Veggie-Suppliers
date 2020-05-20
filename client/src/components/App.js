@@ -17,6 +17,7 @@ import HomeLayout from "./HomeLayout";
 import Dashboard from "./views/Backend/Dashboard/Dashboard";
 import LandingPage from "./views/LandingPage/LandingPage";
 import _401Page from "./views/ErrorPage/_401Page";
+import AddProduct from "./views/Backend/Product/AddProduct";
 
 function App() {
   return (
@@ -25,13 +26,15 @@ function App() {
         <Switch>
           <AppRoute exact path="/401" component={Auth(_401Page, null)} layout={HomeLayout} />
           <AppRoute exact path="/" component={Auth(LandingPage, null)} layout={HomeLayout} />
-          <AppRoute exact path="/dashboard" component={RoleAuth(Dashboard,false, null,['admin','shop-manager'])} layout={BackendLayout}/>
           <AppRoute exact path="/login" component={Auth(LoginPage, false)} layout={HomeLayout}/>
           <AppRoute exact path="/register" component={Auth(RegisterPage, false)} layout={HomeLayout}/>
           <Route exact path="/product/upload" component={Auth(UploadProductPage, true)} />
           <Route exact path="/product/:productId" component={Auth(DetailProductPage, null)} />
           <Route exact path="/user/cart" component={Auth(CartPage, true)} />
           <Route exact path="/history" component={Auth(HistoryPage, true)} />
+
+          <AppRoute exact path="/dashboard/index" component={RoleAuth(Dashboard,false, null,['admin','shop-manager'])} layout={BackendLayout}/>
+          <AppRoute exact path="/dashboard/product-add" component={RoleAuth(AddProduct,false, null,['admin','shop-manager'])} layout={BackendLayout}/>
 
         </Switch>
       </div>
