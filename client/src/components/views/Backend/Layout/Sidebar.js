@@ -122,7 +122,7 @@ function Sidebar(props) {
               <ul className="nav flex-column sub-menu">
                 <li className="nav-item"><Link
                   className={isPathActive('/dashboard/product-all') ? 'nav-link active' : 'nav-link'}
-                  to="/user-pages/blank-page"><i className="mdi mdi-view-list menu-icon"></i> All Products</Link></li>
+                  to="/dashboard/product-all"><i className="mdi mdi-view-list menu-icon"></i> All Products</Link></li>
                 <li className="nav-item"><Link
                   className={isPathActive('/dashboard/product-add') ? 'nav-link active' : 'nav-link'}
                   to="/dashboard/product-add"><i className="mdi mdi-cart-plus menu-icon"></i> Add Product</Link></li>

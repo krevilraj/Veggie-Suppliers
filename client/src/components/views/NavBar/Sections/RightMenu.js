@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import {USER_SERVER} from '../../../Config';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {useSelector} from "react-redux";
 
 function RightMenu(props) {
@@ -23,7 +23,7 @@ function RightMenu(props) {
       <ul id="menu-header-top-links" className="header-menu">
         <li id="menu-item-3249"
             className="white">
-          <a href={void(0)} aria-current="page">Welcome {user.userData.name} ! </a></li>
+          <Link to="!#" onClick={event => event.preventDefault()} aria-current="page">Welcome {user.userData.name} ! </Link></li>
         {(user.userData.role === 3 || user.userData.role === 1 || user.userData.role === 2) ?
           <li><a href="/dashboard/index" className="login show-login-link">Dashboard </a></li>
           :

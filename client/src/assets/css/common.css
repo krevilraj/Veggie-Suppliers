@@ -331,3 +331,27 @@ button:focus, a:focus {
 
 .btn-2 {
     padding: 8px 30px; }
+select.form-control:focus {
+    outline: 1px solid #dee2e6 !important;
+}
+.input-group-append .input-group-text, .input-group-prepend .input-group-text {
+    border-color: #dee2e6;
+    /* padding: 0.94rem 0.5rem 0.94rem 1rem; */
+    color: #b9b8b8;
+    padding: 0px 12px;
+}
+.pointer:hover{
+    cursor: pointer;
+}
+.spinhide{
+    display:none;
+}
+.spinner {
+    position: fixed !important;
+    top: 10em;
+    margin-left: 50% !important;
+    margin-top: 10px !important;
+    height: 50px;
+    left: 1em;
+    z-index: 200;
+}
