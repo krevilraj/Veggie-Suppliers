@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {withRouter} from "react-router-dom";
 import '../material.css';
 import Axios from "axios";
-import {Button, Switch, Table,Space} from 'antd';
+import {Button, message, Space, Switch, Table} from 'antd';
 
 
 // import DatePicker from 'react-datepicker';
@@ -11,12 +11,17 @@ import {Button, Switch, Table,Space} from 'antd';
 
 function AllProduct(props) {
   var Loader = require('react-loaders').Loader;
+  const key = 'updatable';
 
+
+  function renderLoader() {
+    return Loading ? <Loader type="line-scale" active/> : '';
+  }
 
   const [Products, setProducts] = useState([])
   const [Skip, setSkip] = useState(0)
   const [Limit, setLimit] = useState(8)
-  const [sLoading, setLoading] = useState([])
+  const [Loading, setLoading] = useState(false)
 
   useEffect(() => {
 
@@ -41,16 +46,14 @@ function AllProduct(props) {
   }
 
   const onChange = tags => (checked) => {
-    const newLoadings = [...sLoading];
-    if (sLoading[tags._id]) {
-      newLoadings[tags._id] = false;
-      setLoading(newLoadings);
-    }
-    else {
-      newLoadings[tags._id] = true;
-      setLoading(newLoadings);
-    }
-
+    message.loading({content: 'Loading...', key, duration: 0,className:"modelMessage"});
+    console.log(checked);
+    setLoading(!Loading)
+  }
+  const onChange1 = () => {
+    setTimeout(() => {
+      message.success({content: 'Loaded!', key, duration: 2,className:"modelMessage"});
+    }, 1000);
   }
   const columns = [
     {
@@ -83,14 +86,18 @@ function AllProduct(props) {
       title: 'Status',
       key: 'current_status',
       render: (text, record) => {
+        /*let load = sLoading;
+        load[record._id] = false;
+        setLoading(load);
+        /!*setLoading([...sLoading => sLoading[record._id] = false])*!/*/
         if (record.current_status === "Enabled") {
           return (
 
-            <Switch defaultChecked loading={sLoading[record._id]} checkedChildren="Active" unCheckedChildren="Inactive"
+            <Switch defaultChecked loading={Loading[record._id]} checkedChildren="Active" unCheckedChildren="Inactive"
                     onChange={onChange(record)}/>
           );
         } else {
-          return (<Switch loading={sLoading[record._id]} checkedChildren="Active" unCheckedChildren="Inactive"
+          return (<Switch loading={Loading[record._id]} checkedChildren="Active" unCheckedChildren="Inactive"
                           onChange={onChange(record)}/>);
         }
       }
@@ -101,7 +108,7 @@ function AllProduct(props) {
       render: (text, record) => (
         <>
           <Space>
-            <Button type="primary">Edit</Button>
+            <Button type="primary" onClick={onChange1}>Edit</Button>
             <Button>View</Button>
             <Button type="danger">Delete</Button>
           </Space>
@@ -112,8 +119,8 @@ function AllProduct(props) {
   ];
   return (
     <div>
-      <Loader type="ball-pulse-sync"/>
-      <Table columns={columns} dataSource={Products}/>
+      {renderLoader()}
+      <Table columns={columns} dataSource={Products} rowKey="_id"/>
     </div>
 
   );
