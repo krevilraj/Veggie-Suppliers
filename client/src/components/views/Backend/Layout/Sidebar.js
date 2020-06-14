@@ -46,7 +46,7 @@ function Sidebar(props) {
       <nav className="sidebar sidebar-offcanvas" id="sidebar">
         <div className="text-center sidebar-brand-wrapper d-flex align-items-center">
           <a className="sidebar-brand brand-logo" href="/"><img
-            src="../images/logo.png" alt="logo"/></a>
+            src="../../images/logo.png" alt="logo"/></a>
           <a className="sidebar-brand brand-logo-mini pt-3" href="/"><img
             src={require("../../../../assets/images/logo-mini.svg")} alt="logo"/></a>
         </div>
@@ -121,11 +121,11 @@ function Sidebar(props) {
             <Collapse in={navmenu.userProduct}>
               <ul className="nav flex-column sub-menu">
                 <li className="nav-item"><Link
-                  className={isPathActive('/dashboard/product-all') ? 'nav-link active' : 'nav-link'}
-                  to="/dashboard/product-all"><i className="mdi mdi-view-list menu-icon"></i> All Products</Link></li>
+                  className={isPathActive('/dashboard/product/index') ? 'nav-link active' : 'nav-link'}
+                  to="/dashboard/product/index"><i className="mdi mdi-view-list menu-icon"></i> All Products</Link></li>
                 <li className="nav-item"><Link
-                  className={isPathActive('/dashboard/product-add') ? 'nav-link active' : 'nav-link'}
-                  to="/dashboard/product-add"><i className="mdi mdi-cart-plus menu-icon"></i> Add Product</Link></li>
+                  className={isPathActive('/dashboard/product/add') ? 'nav-link active' : 'nav-link'}
+                  to="/dashboard/product/add"><i className="mdi mdi-cart-plus menu-icon"></i> Add Product</Link></li>
                 <li className="nav-item"><Link
                   className={isPathActive('/dashboard/cateories') ? 'nav-link active' : 'nav-link'}
                   to="/user-pages/register-1"><i className="mdi mdi-chili-hot menu-icon"></i> Categories</Link></li>

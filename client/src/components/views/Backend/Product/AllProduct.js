@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {withRouter} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import '../material.css';
 import Axios from "axios";
-import {Button, message, Space, Switch, Table} from 'antd';
+import {Button, message, Popconfirm, Space, Switch, Table} from 'antd';
+import {DeleteOutlined, EyeOutlined, FormOutlined} from '@ant-design/icons';
 
 
 // import DatePicker from 'react-datepicker';
@@ -21,7 +22,7 @@ function AllProduct(props) {
   const [Products, setProducts] = useState([])
   const [Skip, setSkip] = useState(0)
   const [Limit, setLimit] = useState(8)
-  const [Loading, setLoading] = useState(false)
+  const [Loading, setLoading] = useState([])
 
   useEffect(() => {
 
@@ -46,14 +47,48 @@ function AllProduct(props) {
   }
 
   const onChange = tags => (checked) => {
-    message.loading({content: 'Loading...', key, duration: 0,className:"modelMessage"});
-    console.log(checked);
-    setLoading(!Loading)
+
+    message.loading({content: 'Action in Progress...', key, duration: 0, className: "modelMessage"});
+    const postData = {
+      _id: tags._id,
+      'current_status': checked ? 'Enabled' : 'Disabled'
+    }
+    Axios.put('/api/product/', postData)
+      .then(response => {
+        if (response.data.success) {
+          setTimeout(() => {
+            message.success({content: response.data.message, key, duration: 2, className: "modelMessage"});
+          }, 1000);
+        } else {
+          setTimeout(() => {
+            message.error({content: response.data.message, key, duration: 2, className: "modelMessage"});
+          }, 1000);
+
+        }
+      })
   }
-  const onChange1 = () => {
-    setTimeout(() => {
-      message.success({content: 'Loaded!', key, duration: 2,className:"modelMessage"});
-    }, 1000);
+  
+  const handleDelete = (record, index) => {
+    // setProducts(Products.filter((e) => (e._id !== record._id)))
+     message.loading({content: 'Action in Progress...', key, duration: 0, className: "modelMessage"});
+     const postData = {
+       _id: record._id,
+     }
+     Axios.delete('/api/product/'+record._id)
+       .then(response => {
+         if (response.data.success) {
+           setProducts(Products.filter((e)=>(e._id !== record._id)))
+           setTimeout(() => {
+             message.success({content: response.data.message, key, duration: 2, className: "modelMessage"});
+           }, 1000);
+         } else {
+           setTimeout(() => {
+             message.error({content: response.data.message, key, duration: 2, className: "modelMessage"});
+           }, 1000);
+
+         }
+
+       })
   }
   const columns = [
     {
@@ -67,7 +102,7 @@ function AllProduct(props) {
         }
         else {
           return <img width={50}
-                      src="../images/imagenotfound.jpg"/>
+                      src="../../images/imagenotfound.jpg"/>
         }
       }
 
@@ -105,12 +140,17 @@ function AllProduct(props) {
     {
       title: 'Action',
       key: 'action',
-      render: (text, record) => (
+      render: (text, record, index) => (
         <>
           <Space>
-            <Button type="primary" onClick={onChange1}>Edit</Button>
-            <Button>View</Button>
-            <Button type="danger">Delete</Button>
+            <Link to={record._id}>
+              <Button type="primary" icon={<FormOutlined/>}>Edit</Button>
+            </Link>
+            <Button icon={<EyeOutlined/>}>View</Button>
+            <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record, index)}>
+              <Button type="danger" icon={<DeleteOutlined/>}
+              >Delete</Button>
+            </Popconfirm>
           </Space>
 
         </>
@@ -119,7 +159,7 @@ function AllProduct(props) {
   ];
   return (
     <div>
-      {renderLoader()}
+      {/*{renderLoader()}*/}
       <Table columns={columns} dataSource={Products} rowKey="_id"/>
     </div>
 

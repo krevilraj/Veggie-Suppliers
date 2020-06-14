@@ -32,6 +32,22 @@ const productSchema = mongoose.Schema({
     type: Array,
     default: []
   },
+  manage_stock: {
+    type: Boolean,
+    default: false
+  },
+  stock_quantity: {
+    type: Number,
+    default: false
+  },
+  stock_availabilty: {
+    type: String,
+    maxlength: 20
+  },
+  specification: {
+    type: Array,
+    default: []
+  },
   disable_price: {
     type: Boolean,
     default: false
@@ -53,8 +69,8 @@ const productSchema = mongoose.Schema({
     type: Number,
     default: 0
   },
-  status: {
-    type: Boolean,
+  current_status: {
+    type: String,
     default: true
   },
 }, {timestamps: true})

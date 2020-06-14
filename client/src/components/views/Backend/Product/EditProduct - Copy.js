@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import {
   Button,
@@ -19,12 +19,13 @@ import FileUpload from "../../../utils/FileUpload";
 import classnames from "classnames";
 import QuillEditor from "../../../editor/QuillEditor";
 import Axios from "axios";
-import { message, Space, Switch } from "antd";
+import { Skeleton, Space, Switch, message } from "antd";
 
 // import DatePicker from 'react-datepicker';
 // import { Dropdown } from 'react-bootstrap';
 
-function AddProduct(props) {
+function EditProduct(props) {
+  const [IdValue, setIdValue] = useState("");
   const [TitleValue, setTitleValue] = useState("");
   const [ShortDescriptionValue, setShortDescriptionValue] = useState("");
   const [DescriptionValue, setDescriptionValue] = useState("");
@@ -55,75 +56,113 @@ function AddProduct(props) {
   const onFilesChange = (files) => {
     setFiles(files);
   };
+  const onEnableFeatureChange = (e) => {
+    setEnableFeatureValue(e.target.checked);
+  };
 
+  const renderQuill = () =>{
+    return DescriptionValue?<QuillEditor
+    placeholder={"Start Posting Something"}
+    onEditorChange={onEditorChange}
+    onFilesChange={onFilesChange}
+    htmlval={DescriptionValue}
+  />:null;
+  }
   const onSubmit = (event) => {
     event.preventDefault();
+    // if (!TitleValue || !DescriptionValue || !SalesPriceValue || !Images) {
+    //   setTimeout(() => {
+    //     message.error({
+    //       content: "fill all the fields first!!",
+    //       key,
+    //       duration: 2,
+    //       className: "modelMessage",
+    //     });
+    //   }, 1000);
+    //   return;
+    // }
 
-    if (!TitleValue || !DescriptionValue || !SalesPriceValue || !Images) {
-      setTimeout(() => {
-        message.error({
-          content: "fill all the fields first!!",
-          key,
-          duration: 2,
-          className: "modelMessage",
-        });
-      }, 1000);
-      return;
-    }
+    // const postData = {
+    //   _id: IdValue,
+    //   writer: props.user.userData._id,
+    //   title: TitleValue,
+    //   description: DescriptionValue,
+    //   short_description: ShortDescriptionValue,
+    //   sku: SKUValue,
+    //   regular_price: RegularPriceValue,
+    //   sales_price: SalesPriceValue,
+    //   images: Images,
+    //   manage_stock: ManageStock,
+    //   stock_quantity: StockQuantityValue,
+    //   stock_availabilty: StockAvailabilty ? "In Stock" : "Out of Stock",
+    //   enable_featured: EnableFeatureValue,
+    //   disable_price: DisablePriceValue,
+    //   current_status: StatusValue ? "Enabled" : "Disabled",
+    // };
 
-    const postData = {
-      writer: props.user.userData._id,
-      title: TitleValue,
-      description: DescriptionValue,
-      short_description: ShortDescriptionValue,
-      sku: SKUValue,
-      regular_price: RegularPriceValue,
-      sales_price: SalesPriceValue,
-      images: Images,
-      manage_stock: ManageStock,
-      stock_quantity: StockQuantityValue,
-      stock_availabilty: StockAvailabilty ? "In Stock" : "Out of Stock",
-      enable_featured: EnableFeatureValue,
-      disable_price: DisablePriceValue,
-      current_status: StatusValue ? "Enabled" : "Disabled",
-    };
-    message.loading({
-      content: "Action in Progress...",
-      key,
-      duration: 0,
-      className: "modelMessage",
-    });
+    // message.loading({
+    //   content: "Action in Progress...",
+    //   key,
+    //   duration: 0,
+    //   className: "modelMessage",
+    // });
 
-    Axios.post("/api/product/", postData).then((response) => {
-      if (response.data.success) {
-        setTimeout(() => {
-          message.success({
-            content: "Product Successfully Uploaded",
-            key,
-            duration: 2,
-            className: "modelMessage",
-          });
-        }, 1000);
-      } else {
-        setTimeout(() => {
-          message.error({
-            content: "Failed to upload",
-            key,
-            duration: 2,
-            className: "modelMessage",
-          });
-        }, 1000);
-      }
-    });
+    // Axios.put("/api/product/", postData).then((response) => {
+    //   if (response.data.success) {
+    //     setTimeout(() => {
+    //       message.success({
+    //         content: "Product Successfully Uploaded",
+    //         key,
+    //         duration: 2,
+    //         className: "modelMessage",
+    //       });
+    //     }, 1000);
+    //   } else {
+    //     setTimeout(() => {
+    //       message.error({
+    //         content: "Failed to upload",
+    //         key,
+    //         duration: 2,
+    //         className: "modelMessage",
+    //       });
+    //     }, 1000);
+    //   }
+    // });
+
+    console.log(StockAvailabilty);
   };
+
+  useEffect(() => {
+    const productId = props.match.params.productId;
+    Axios.get("/api/product/" + productId).then((response) => {
+      console.log(response.data);
+      // setProduct(response.data);
+      setIdValue(response.data._id);
+      setTitleValue(response.data.title);
+      setShortDescriptionValue(response.data.short_description);
+      setDescriptionValue(response.data.description);
+      setImages(response.data.images);
+      setManageStock(response.data.manage_stock);
+      setStockQuantity(response.data.stock_quantity);
+      setStockAvailabilty(response.data.stock_availabilty === "In Stock");
+      setRegularPriceValue(response.data.regular_price);
+      setSalesPriceValue(response.data.sales_price);
+      setDisablePriceValue(response.data.disable_price);
+      setEnableFeatureValue(response.data.enable_featured);
+      setSKUValue(response.data.sku);
+      setStatusValue(response.data.current_status === "Enabled");
+    });
+  }, []);
+
+ 
   const toggleStatus = (checked) => {
     setStatusValue(checked);
   };
-  
+ 
   return (
     <div>
       <div className="page-header">
-        <h3 className="page-title">Add New Product</h3>
+        <h3 className="page-title">Update Product</h3>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
@@ -146,6 +185,7 @@ function AddProduct(props) {
                     type="text"
                     id="exampleInputUsername1"
                     placeholder="Product name"
+                    value={TitleValue}
                     onChange={(e) => setTitleValue(e.target.value)}
                     size="lg"
                   />
@@ -156,23 +196,23 @@ function AddProduct(props) {
                     className="form-control"
                     id="exampleTextarea1"
                     rows="4"
+                    value={ShortDescriptionValue}
                     onChange={(e) => setShortDescriptionValue(e.target.value)}
                   ></textarea>
                 </Form.Group>
 
                 <Form.Group>
                   <label htmlFor="exampleTextarea2">Description</label>
-                  <QuillEditor
-                    placeholder={"Start Posting Something"}
-                    onEditorChange={onEditorChange}
-                    onFilesChange={onFilesChange}
-                    htmlval={DescriptionValue}
-                  />
+                  {renderQuill()}
                 </Form.Group>
                 <Form.Group>
                   <blockquote className="blockquote">
                     <h5>Images</h5>
-                    <FileUpload refreshFunction={updateImages} />
+                    <FileUpload
+                      refreshFunction={updateImages}
+                      key={Images}
+                      img={Images}
+                    />
                   </blockquote>
                 </Form.Group>
               </div>
@@ -276,6 +316,7 @@ function AddProduct(props) {
                               type="text"
                               id="sku"
                               placeholder="SKU"
+                              value={SKUValue}
                               onChange={(e) => setSKUValue(e.target.value)}
                             />
                           </div>
@@ -298,6 +339,7 @@ function AddProduct(props) {
                                 type="number"
                                 min="0"
                                 step="any"
+                                value={RegularPriceValue}
                                 onChange={(e) =>
                                   setRegularPriceValue(e.target.value)
                                 }
@@ -327,6 +369,7 @@ function AddProduct(props) {
                                 min="0"
                                 step="any"
                                 id="sales_price"
+                                value={SalesPriceValue}
                                 onChange={(e) =>
                                   setSalesPriceValue(e.target.value)
                                 }
@@ -344,7 +387,7 @@ function AddProduct(props) {
                       <Col sm="12">
                         <Form.Group className="row">
                           <label
-                            htmlFor="sku"
+                            htmlFor="manage_stock"
                             className="col-sm-3 col-form-label"
                           >
                             Manage Stock
@@ -353,7 +396,9 @@ function AddProduct(props) {
                             <div className="form-check">
                               <label className="form-check-label">
                                 <input
+                                  id="manage_stock"
                                   type="checkbox"
+                                  checked={ManageStock ? "checked" : ""}
                                   onChange={(e) =>
                                     setManageStock(e.target.checked)
                                   }
@@ -378,6 +423,7 @@ function AddProduct(props) {
                                 type="number"
                                 id="stock_quantity"
                                 placeholder="Stock Quantity"
+                                value={StockQuantityValue}
                                 onChange={(e) =>
                                   setStockQuantity(e.target.value)
                                 }
@@ -391,7 +437,7 @@ function AddProduct(props) {
                             htmlFor="stock_availabilty"
                             className="col-sm-3 col-form-label"
                           >
-                            Stock Availability{" "}
+                            Stock Availability
                           </label>
                           <div className="col-sm-9">
                             <Space size="large" align="center">
@@ -496,6 +542,7 @@ function AddProduct(props) {
                               <label className="form-check-label">
                                 <input
                                   type="checkbox"
+                                  checked={DisablePriceValue}
                                   onChange={(e) =>
                                     setDisablePriceValue(e.target.checked)
                                   }
@@ -514,16 +561,15 @@ function AddProduct(props) {
                             htmlFor="sku"
                             className="col-sm-3 col-form-label"
                           >
-                            Feature Product{EnableFeatureValue}
+                            Feature Product
                           </label>
                           <div className="col-sm-9">
                             <div className="form-check">
                               <label className="form-check-label">
                                 <input
                                   type="checkbox"
-                                  onChange={(e) =>
-                                    setEnableFeatureValue(e.target.checked)
-                                  }
+                                  checked={EnableFeatureValue}
+                                  onChange={onEnableFeatureChange}
                                   className="form-check-input"
                                 />
                                 <i className="input-helper"></i>
@@ -538,7 +584,7 @@ function AddProduct(props) {
                 </TabContent>
 
                 <button type="submit" className="btn btn-inverse-primary">
-                  Submit
+                  Update
                 </button>
               </div>
             </div>
@@ -549,4 +595,4 @@ function AddProduct(props) {
   );
 }
 
-export default withRouter(AddProduct);
+export default withRouter(EditProduct);

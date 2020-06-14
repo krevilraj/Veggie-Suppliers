@@ -512,3 +512,25 @@ select.form-control:focus {
     text-align: right;
     margin-right: 36px;
 }
+.ant-message .anticon {
+    font-size: 26px;
+}
+.anticon{
+    vertical-align: 0;
+}
+.space-align-container {
+    display: flex;
+    align-item: flex-start;
+    flex-wrap: wrap;
+}
+.space-align-block {
+    margin: 8px 4px;
+    border: 1px solid #40a9ff;
+    padding: 4px;
+    flex: none;
+}
+.space-align-block .mock-block {
+    display: inline-block;
+    padding: 32px 8px 16px;
+    background: rgba(150, 150, 150, 0.2);
+}
