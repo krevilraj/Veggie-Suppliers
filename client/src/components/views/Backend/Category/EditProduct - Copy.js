@@ -16,8 +16,6 @@ import {
 import "../Backend.scss";
 import { Link, withRouter } from "react-router-dom";
 import FileUpload from "../../../utils/FileUpload";
-import ProductSpecification from "./ProductSpecification";
-import ProductFAQ from "./ProductFAQ";
 import classnames from "classnames";
 import QuillEditor from "../../../editor/QuillEditor";
 import Axios from "axios";
@@ -37,8 +35,6 @@ function EditProduct(props) {
   const [DisablePriceValue, setDisablePriceValue] = useState(false);
   const [EnableFeatureValue, setEnableFeatureValue] = useState(false);
   const [ManageStock, setManageStock] = useState(false);
-  const [Specification, setSpecification] = useState([]);
-  const [FAQ, setFAQ] = useState([]);
   const [StockQuantityValue, setStockQuantity] = useState(0);
   const [StockAvailabilty, setStockAvailabilty] = useState(true);
   const [StatusValue, setStatusValue] = useState(true);
@@ -57,12 +53,6 @@ function EditProduct(props) {
   const updateImages = (newImages) => {
     setImages(newImages);
   };
-  const updateSpecification = (Specification) => {
-    setSpecification(Specification);
-  };
-  const updateFAQ = (FAQ) => {
-    setFAQ(FAQ);
-  };
   const onFilesChange = (files) => {
     setFiles(files);
   };
@@ -70,79 +60,76 @@ function EditProduct(props) {
     setEnableFeatureValue(e.target.checked);
   };
 
-  const renderQuill = () => {
-    return DescriptionValue ? (
-      <QuillEditor
-        placeholder={"Start Posting Something"}
-        onEditorChange={onEditorChange}
-        onFilesChange={onFilesChange}
-        htmlval={DescriptionValue}
-      />
-    ) : null;
-  };
+  const renderQuill = () =>{
+    return DescriptionValue?<QuillEditor
+    placeholder={"Start Posting Something"}
+    onEditorChange={onEditorChange}
+    onFilesChange={onFilesChange}
+    htmlval={DescriptionValue}
+  />:null;
+  }
   const onSubmit = (event) => {
     event.preventDefault();
-    if (!TitleValue || !DescriptionValue || !SalesPriceValue || !Images) {
-      setTimeout(() => {
-        message.error({
-          content: "fill all the fields first!!",
-          key,
-          duration: 2,
-          className: "modelMessage",
-        });
-      }, 1000);
-      return;
-    }
+    // if (!TitleValue || !DescriptionValue || !SalesPriceValue || !Images) {
+    //   setTimeout(() => {
+    //     message.error({
+    //       content: "fill all the fields first!!",
+    //       key,
+    //       duration: 2,
+    //       className: "modelMessage",
+    //     });
+    //   }, 1000);
+    //   return;
+    // }
 
-    const postData = {
-      _id: IdValue,
-      writer: props.user.userData._id,
-      title: TitleValue,
-      description: DescriptionValue,
-      short_description: ShortDescriptionValue,
-      sku: SKUValue,
-      regular_price: RegularPriceValue,
-      sales_price: SalesPriceValue,
-      images: Images,
-      manage_stock: ManageStock,
-      stock_quantity: StockQuantityValue,
-      stock_availabilty: StockAvailabilty ? "In Stock" : "Out of Stock",
-      specification: Specification,
-      faq: FAQ,
-      enable_featured: EnableFeatureValue,
-      disable_price: DisablePriceValue,
-      current_status: StatusValue ? "Enabled" : "Disabled",
-    };
+    // const postData = {
+    //   _id: IdValue,
+    //   writer: props.user.userData._id,
+    //   title: TitleValue,
+    //   description: DescriptionValue,
+    //   short_description: ShortDescriptionValue,
+    //   sku: SKUValue,
+    //   regular_price: RegularPriceValue,
+    //   sales_price: SalesPriceValue,
+    //   images: Images,
+    //   manage_stock: ManageStock,
+    //   stock_quantity: StockQuantityValue,
+    //   stock_availabilty: StockAvailabilty ? "In Stock" : "Out of Stock",
+    //   enable_featured: EnableFeatureValue,
+    //   disable_price: DisablePriceValue,
+    //   current_status: StatusValue ? "Enabled" : "Disabled",
+    // };
 
-    message.loading({
-      content: "Action in Progress...",
-      key,
-      duration: 0,
-      className: "modelMessage",
-    });
+    // message.loading({
+    //   content: "Action in Progress...",
+    //   key,
+    //   duration: 0,
+    //   className: "modelMessage",
+    // });
 
-      console.log(postData)
-    Axios.put("/api/product/", postData).then((response) => {
-      if (response.data.success) {
-        setTimeout(() => {
-          message.success({
-            content: "Product Successfully Uploaded",
-            key,
-            duration: 2,
-            className: "modelMessage",
-          });
-        }, 1000);
-      } else {
-        setTimeout(() => {
-          message.error({
-            content: "Failed to upload",
-            key,
-            duration: 2,
-            className: "modelMessage",
-          });
-        }, 1000);
-      }
-    });
+    // Axios.put("/api/product/", postData).then((response) => {
+    //   if (response.data.success) {
+    //     setTimeout(() => {
+    //       message.success({
+    //         content: "Product Successfully Uploaded",
+    //         key,
+    //         duration: 2,
+    //         className: "modelMessage",
+    //       });
+    //     }, 1000);
+    //   } else {
+    //     setTimeout(() => {
+    //       message.error({
+    //         content: "Failed to upload",
+    //         key,
+    //         duration: 2,
+    //         className: "modelMessage",
+    //       });
+    //     }, 1000);
+    //   }
+    // });
+
+    console.log(StockAvailabilty);
   };
 
   useEffect(() => {
@@ -155,8 +142,6 @@ function EditProduct(props) {
       setShortDescriptionValue(response.data.short_description);
       setDescriptionValue(response.data.description);
       setImages(response.data.images);
-      setSpecification(response.data.specification);
-      setFAQ(response.data.faq);      
       setManageStock(response.data.manage_stock);
       setStockQuantity(response.data.stock_quantity);
       setStockAvailabilty(response.data.stock_availabilty === "In Stock");
@@ -169,10 +154,11 @@ function EditProduct(props) {
     });
   }, []);
 
+ 
   const toggleStatus = (checked) => {
     setStatusValue(checked);
   };
-
+ 
   return (
     <div>
       <div className="page-header">
@@ -460,9 +446,7 @@ function EditProduct(props) {
                                 id="stock_availabilty"
                                 key={StockAvailabilty}
                                 checkedChildren="In Stock"
-                                onChange={(checked) =>
-                                  setStockAvailabilty(checked)
-                                }
+                                onChange={(checked)=>setStockAvailabilty(checked)}
                                 unCheckedChildren="Out of Stock"
                               />
                             </Space>
@@ -472,18 +456,52 @@ function EditProduct(props) {
                     </Row>
                   </TabPane>
                   <TabPane tabId="3">
-                    <ProductSpecification
-                      refreshFunction={updateSpecification}
-                      key={Specification}
-                      specification={Specification}
-                    />
+                    <Row>
+                      <Col sm="6">
+                        <Card body>
+                          <CardTitle>Special Title Treatment</CardTitle>
+                          <CardText>
+                            With supporting text below as a natural lead-in to
+                            additional content.
+                          </CardText>
+                          <Button>Go somewhere</Button>
+                        </Card>
+                      </Col>
+                      <Col sm="6">
+                        <Card body>
+                          <CardTitle>Special Title Treatment</CardTitle>
+                          <CardText>
+                            With supporting text below as a natural lead-in to
+                            additional content.
+                          </CardText>
+                          <Button>Go somewhere</Button>
+                        </Card>
+                      </Col>
+                    </Row>
                   </TabPane>
                   <TabPane tabId="4">
-                  <ProductFAQ
-                      refreshFunction={updateFAQ}
-                      key={FAQ}
-                      faq={FAQ}
-                    />
+                    <Row>
+                      <Col sm="6">
+                        <Card body>
+                          <CardTitle>Special Title Treatment</CardTitle>
+                          <CardText>
+                            With supporting text below as a natural lead-in to
+                            additional content.
+                          </CardText>
+                          <Button>Go somewhere</Button>
+                        </Card>
+                      </Col>
+                      <Col sm="6">
+                        <Card body>
+                          <CardTitle>Special Title Treatment</CardTitle>
+                          <CardText>
+                            With supporting text below as a natural lead-in to
+                            additional content.
+                          </CardText>
+                          <Button>Go somewhere</Button>
+                        </Card>
+                      </Col>
+                    </Row>
                   </TabPane>
                   <TabPane tabId="5">
                     <Row>

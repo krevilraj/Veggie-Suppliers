@@ -534,3 +534,12 @@ select.form-control:focus {
     padding: 32px 8px 16px;
     background: rgba(150, 150, 150, 0.2);
 }
+.specification-block, .faq-block{
+    margin-top: 31px
+}
+.specification-block button{
+    font-size:11px;
+}
+.spec-active,.faq-active{
+    opacity: 0.4;
+}

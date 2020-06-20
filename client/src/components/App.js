@@ -19,6 +19,7 @@ import _401Page from "./views/ErrorPage/_401Page";
 import AddProduct from "./views/Backend/Product/AddProduct";
 import AllProduct from "./views/Backend/Product/AllProduct";
 import EditProduct from "./views/Backend/Product/EditProduct";
+import AllCategory from './views/Backend/Category/AllCategory';
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
                     component={RoleAuth(AddProduct, false, null, ['admin', 'shop-manager'])} layout={BackendLayout}/>
           <AppRoute exact path="/dashboard/product/:productId"
                     component={RoleAuth(EditProduct, false, null, ['admin', 'shop-manager'])} layout={BackendLayout}/>
+
+          <AppRoute exact path="/dashboard/category/index"
+                    component={RoleAuth(AllCategory, false, null, ['admin', 'shop-manager'])} layout={BackendLayout}/>
         </Switch>
       </div>
       <Footer/>

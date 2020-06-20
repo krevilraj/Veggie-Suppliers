@@ -48,6 +48,10 @@ const productSchema = mongoose.Schema({
     type: Array,
     default: []
   },
+  faq: {
+    type: Array,
+    default: []
+  },
   disable_price: {
     type: Boolean,
     default: false
@@ -56,6 +60,12 @@ const productSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
+  categories: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Categories"
+    }
+  ],
   continents: {
     type: Number,
     default: 1

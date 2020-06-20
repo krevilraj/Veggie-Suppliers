@@ -127,8 +127,8 @@ function Sidebar(props) {
                   className={isPathActive('/dashboard/product/add') ? 'nav-link active' : 'nav-link'}
                   to="/dashboard/product/add"><i className="mdi mdi-cart-plus menu-icon"></i> Add Product</Link></li>
                 <li className="nav-item"><Link
-                  className={isPathActive('/dashboard/cateories') ? 'nav-link active' : 'nav-link'}
-                  to="/user-pages/register-1"><i className="mdi mdi-chili-hot menu-icon"></i> Categories</Link></li>
+                  className={isPathActive('/dashboard/category/index') ? 'nav-link active' : 'nav-link'}
+                  to="/dashboard/category/index"><i className="mdi mdi-chili-hot menu-icon"></i> Categories</Link></li>
 
               </ul>
             </Collapse>
